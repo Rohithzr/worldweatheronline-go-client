@@ -1,4 +1,4 @@
-# wwogc
+# World Weather Online's API Client [wwogc]
 --
     import "github.com/Rohithzr/worldweatheronline_go_client"
 
