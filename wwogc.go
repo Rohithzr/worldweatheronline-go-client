@@ -1,24 +1,28 @@
 package wwogc
 
 import (
-    "fmt"
     "net/http"
     "io/ioutil"
     )
-
-func GetData(query []Params, credentials Credentials, method string) string{
+//Gets the data from official world weather online servers
+func GetData(query []Params, credentials Credentials, method string) (int, string){
 	resp := ""
+	status := 0
 	uri := genWWOUrl(query, credentials, "searchApi")
     response, err := http.Get(uri)
     if err != nil {
-        fmt.Printf("%s", err)
+        status = 0
+        resp = ""
     } else {
         defer response.Body.Close()
         contents, err := ioutil.ReadAll(response.Body)
         if err != nil {
-            fmt.Printf("%s", err)
+            status = response.StatusCode
+            resp = ""
         }
+        status = response.StatusCode
         resp = string(contents)
     }
-    return resp
+    return status, resp
 }
+
