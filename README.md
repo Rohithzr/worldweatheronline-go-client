@@ -5,36 +5,41 @@
 
 ## Usage
 
+#### create Client
+
+```go
+credentials := wwogc.Credentials{
+			"your_key",
+			"json",
+			"premium",
+			"EN"
+			}
+```
+
+#### create Query
+```go
+param1 := wwogc.Params{"q","Delhi"}
+param2 := wwogc.Params("num_of_days", "1"}
+query := []wwogc.Params{param1, param2}	
+```
+
+#### Methods
+Methods available are: 
+
+1. Search API (searchApi)
+2. Local Weather API (localWeatherApi)
+3. Time Zone API (tizeZoneApi)
+4. Ski Weather API (skiWeatherApi)
+5. Marine Weather API (marineWeatherApi)
+6. Historical Weather API (historicalWeatherApi)
+
 #### func  GetData
 
-```go
-func GetData(query []Params, credentials Credentials, method string) string
-```
-
-#### type Credentials
+Pass the Above created query and credentials variable and the method you want to call
 
 ```go
-type Credentials struct {
-	Key          string
-	ResponseType string
-	Subscription string
-	Locale       string
-}
+ code, data := GetData(query, credentials, "searchApi")
 ```
-
-Credentials{Key,ResponseType,Subscription,Locale} will create an api client that will send requests to the server where 
- - Key is your API Key 
- - ResponseType is response Format (json, xml) 
- - Subscription is Subscription Type 
- - Locale is Language code as per ISO Codes speified here http://developer.worldweatheronline.com/api/docs/multilingual.aspx
-
-#### type Params
-
-```go
-type Params struct {
-	Name  string
-	Value string
-}
-```
-
-You will ned to create an Array of Params{name:value} which will be the parameters to be passed to the server to fetch data
+Gets the data from official world weather online servers and returns
+ - code: HTTP Status Code (0 if error)
+ - data: HTTP Body (blank if error)
