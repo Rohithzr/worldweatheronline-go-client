@@ -1,5 +1,7 @@
 # World Weather Online's API Client [wwogc]
 --
+[![Build Status](https://travis-ci.org/Rohithzr/worldweatheronline-api.svg?branch=master)](https://travis-ci.org/Rohithzr/worldweatheronline-api)
+
     import "github.com/Rohithzr/worldweatheronline_go_client"
 
 
